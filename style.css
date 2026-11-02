@@ -169,3 +169,192 @@ body {
     }
 }
 
+
+/* ===== Windows 7-style Home ribbon ===== */
+
+.ribbon-content {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    min-width: max-content;
+    min-height: 115px;
+}
+
+#ribbon {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 10px 0;
+}
+
+.ribbon-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+    min-width: 65px;
+    padding: 3px 7px 23px;
+    border-right: 1px solid #c2d2e3;
+}
+
+.group-tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    flex: 1;
+}
+
+.group-label {
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    right: 0;
+    color: #53677b;
+    text-align: center;
+    font-size: 11px;
+}
+
+.ribbon-group button {
+    font-family: inherit;
+    color: #26394c;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background: transparent;
+}
+
+.ribbon-group button:hover {
+    border-color: #8db9e4;
+    background: linear-gradient(#fff, #dceeff);
+}
+
+.ribbon-group button:active {
+    background: #c9e2f8;
+}
+
+.tool-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 42px;
+    min-height: 34px;
+    padding: 3px;
+    font-size: 20px;
+}
+
+.tool-button span:last-child {
+    font-size: 11px;
+}
+
+.tool-button.large {
+    min-width: 55px;
+    min-height: 65px;
+}
+
+.tool-button.large .tool-icon {
+    font-size: 30px;
+}
+
+.small-tools,
+.image-tools {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.small-tools button,
+.image-tools button {
+    padding: 3px 5px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.image-tools {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 4px;
+}
+
+.shape-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 27px);
+    grid-template-rows: repeat(2, 29px);
+    gap: 2px;
+}
+
+.shape-grid button {
+    min-width: 25px;
+    font-size: 21px;
+}
+
+.shapes-group {
+    padding-left: 5px;
+    padding-right: 9px;
+}
+
+/* ===== Color selectors and palette ===== */
+
+.colors-group {
+    min-width: 190px;
+}
+
+.color-selectors {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.color-current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+}
+
+.color-swatch {
+    width: 30px;
+    height: 25px;
+    border: 1px solid #71869b;
+    box-shadow: inset 0 0 0 1px #fff;
+}
+
+.foreground {
+    background: #000;
+}
+
+.background {
+    background: #fff;
+}
+
+.palette {
+    display: grid;
+    grid-template-columns: repeat(10, 15px);
+    grid-template-rows: repeat(2, 15px);
+    gap: 2px;
+}
+
+.palette button {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    border: 1px solid #8295a8;
+    border-radius: 0;
+    background: var(--swatch);
+}
+
+.palette button:hover {
+    outline: 1px solid #275e95;
+    outline-offset: 1px;
+}
+
+.edit-colors-button {
+    margin-top: 5px;
+    padding: 3px 7px;
+    font-size: 11px;
+}
