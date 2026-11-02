@@ -35,133 +35,139 @@
     </nav>
 
     <main id="workspace">
-        
-<div id="ribbon">
-    <div id="home-ribbon" class="ribbon-content">
+        <div id="ribbon">
+            <div id="home-ribbon" class="ribbon-content">
 
-        <!-- Clipboard -->
-        <section class="ribbon-group">
-            <div class="group-tools">
-                <button class="tool-button large" title="Paste">
-                    <span class="tool-icon">📋</span>
-                    <span>Paste</span>
-                </button>
-                <div class="small-tools">
-                    <button title="Cut">✂ Cut</button>
-                    <button title="Copy">▣ Copy</button>
-                </div>
+                <!-- Clipboard -->
+                <section class="ribbon-group">
+                    <div class="group-tools">
+                        <button class="tool-button large" title="Paste">
+                            <span class="tool-icon">📋</span>
+                            <span>Paste</span>
+                        </button>
+                        <div class="small-tools">
+                            <button title="Cut">✂ Cut</button>
+                            <button title="Copy">▣ Copy</button>
+                        </div>
+                    </div>
+                    <div class="group-label">Clipboard</div>
+                </section>
+
+                <!-- Image -->
+                <section class="ribbon-group">
+                    <div class="group-tools image-tools">
+                        <button title="Select">▧ Select</button>
+                        <button title="Crop">▣ Crop</button>
+                        <button title="Resize">↗ Resize</button>
+                        <button title="Rotate">↻ Rotate</button>
+                    </div>
+                    <div class="group-label">Image</div>
+                </section>
+
+                <!-- Tools -->
+                <section class="ribbon-group">
+                    <div class="group-tools">
+                        <button class="tool-button" title="Pencil">✎<span>Pencil</span></button>
+                        <button class="tool-button" title="Fill with color">▰<span>Fill</span></button>
+                        <button class="tool-button" title="Text">A<span>Text</span></button>
+                        <button class="tool-button" title="Eraser">▱<span>Eraser</span></button>
+                        <button class="tool-button" title="Color picker">◉<span>Picker</span></button>
+                        <button class="tool-button" title="Magnifier">⌕<span>Magnifier</span></button>
+                    </div>
+                    <div class="group-label">Tools</div>
+                </section>
+
+                <!-- Brushes -->
+                <section class="ribbon-group">
+                    <div class="group-tools">
+                        <button class="tool-button large" title="Brushes">
+                            <span class="tool-icon">🖌</span>
+                            <span>Brushes ▾</span>
+                        </button>
+                    </div>
+                    <div class="group-label">Brushes</div>
+                </section>
+
+                <!-- Shapes -->
+                <section class="ribbon-group shapes-group">
+                    <div class="group-tools shape-grid">
+                        <button title="Line">╱</button>
+                        <button title="Curve">⌒</button>
+                        <button title="Oval">○</button>
+                        <button title="Rectangle">□</button>
+                        <button title="Polygon">⬠</button>
+                        <button title="Triangle">△</button>
+                        <button title="Rounded rectangle">▢</button>
+                        <button title="Diamond">◇</button>
+                        <button title="Arrow">➜</button>
+                        <button title="Pentagon">⬠</button>
+                        <button title="Hexagon">⬡</button>
+                        <button title="Star">☆</button>
+                    </div>
+                    <div class="group-label">Shapes</div>
+                </section>
+
+                <!-- Size -->
+                <section class="ribbon-group">
+                    <div class="group-tools">
+                        <button class="tool-button large" id="size-button" title="Line size">
+                            <span class="tool-icon">☰</span>
+                            <span>Size: <span id="size-label">2 px</span> ▾</span>
+                        </button>
+
+                        <div id="size-menu" class="size-menu">
+                            <button data-size="1">1 px — Thin</button>
+                            <button data-size="2">2 px — Normal</button>
+                            <button data-size="4">4 px — Medium</button>
+                            <button data-size="6">6 px — Thick</button>
+                            <button data-size="8">8 px — Very thick</button>
+                        </div>
+                    </div>
+                    <div class="group-label">Size</div>
+                </section>
+
+                <!-- Colors -->
+                <section class="ribbon-group colors-group">
+                    <div class="color-selectors">
+                        <div class="color-current">
+                            <div class="color-swatch foreground"></div>
+                            <span>Color 1</span>
+                        </div>
+                        <div class="color-current">
+                            <div class="color-swatch background"></div>
+                            <span>Color 2</span>
+                        </div>
+                    </div>
+
+                    <div class="palette" id="color-palette">
+                        <button style="--swatch:#000000" title="Black"></button>
+                        <button style="--swatch:#7f7f7f" title="Gray"></button>
+                        <button style="--swatch:#880015" title="Dark red"></button>
+                        <button style="--swatch:#ed1c24" title="Red"></button>
+                        <button style="--swatch:#ff7f27" title="Orange"></button>
+                        <button style="--swatch:#fff200" title="Yellow"></button>
+                        <button style="--swatch:#22b14c" title="Green"></button>
+                        <button style="--swatch:#00a2e8" title="Cyan"></button>
+                        <button style="--swatch:#3f48cc" title="Blue"></button>
+                        <button style="--swatch:#a349a4" title="Purple"></button>
+                        <button style="--swatch:#ffffff" title="White"></button>
+                        <button style="--swatch:#c3c3c3" title="Silver"></button>
+                        <button style="--swatch:#b97a57" title="Brown"></button>
+                        <button style="--swatch:#ffaec9" title="Pink"></button>
+                        <button style="--swatch:#ffc90e" title="Gold"></button>
+                        <button style="--swatch:#efe4b0" title="Cream"></button>
+                        <button style="--swatch:#b5e61d" title="Lime"></button>
+                        <button style="--swatch:#99d9ea" title="Light cyan"></button>
+                        <button style="--swatch:#7092be" title="Light blue"></button>
+                        <button style="--swatch:#c8bfe7" title="Lavender"></button>
+                    </div>
+
+                    <button class="edit-colors-button">Edit colors</button>
+                    <div class="group-label">Colors</div>
+                </section>
+
             </div>
-            <div class="group-label">Clipboard</div>
-        </section>
-
-        <!-- Image -->
-        <section class="ribbon-group">
-            <div class="group-tools image-tools">
-                <button title="Select">▧ Select</button>
-                <button title="Crop">▣ Crop</button>
-                <button title="Resize">↗ Resize</button>
-                <button title="Rotate">↻ Rotate</button>
-            </div>
-            <div class="group-label">Image</div>
-        </section>
-
-        <!-- Tools -->
-        <section class="ribbon-group">
-            <div class="group-tools">
-                <button class="tool-button" title="Pencil">✎<span>Pencil</span></button>
-                <button class="tool-button" title="Fill with color">▰<span>Fill</span></button>
-                <button class="tool-button" title="Text">A<span>Text</span></button>
-                <button class="tool-button" title="Eraser">▱<span>Eraser</span></button>
-                <button class="tool-button" title="Color picker">◉<span>Picker</span></button>
-                <button class="tool-button" title="Magnifier">⌕<span>Magnifier</span></button>
-            </div>
-            <div class="group-label">Tools</div>
-        </section>
-
-        <!-- Brushes -->
-        <section class="ribbon-group">
-            <div class="group-tools">
-                <button class="tool-button large" title="Brushes">
-                    <span class="tool-icon">🖌</span>
-                    <span>Brushes ▾</span>
-                </button>
-            </div>
-            <div class="group-label">Brushes</div>
-        </section>
-
-        <!-- Shapes -->
-        <section class="ribbon-group shapes-group">
-            <div class="group-tools shape-grid">
-                <button title="Line">╱</button>
-                <button title="Curve">⌒</button>
-                <button title="Oval">○</button>
-                <button title="Rectangle">□</button>
-                <button title="Polygon">⬠</button>
-                <button title="Triangle">△</button>
-                <button title="Rounded rectangle">▢</button>
-                <button title="Diamond">◇</button>
-                <button title="Arrow">➜</button>
-                <button title="Pentagon">⬠</button>
-                <button title="Hexagon">⬡</button>
-                <button title="Star">☆</button>
-            </div>
-            <div class="group-label">Shapes</div>
-        </section>
-
-        <!-- Size -->
-        <section class="ribbon-group">
-            <div class="group-tools">
-                <button class="tool-button large" title="Line size">
-                    <span class="tool-icon">☰</span>
-                    <span>Size ▾</span>
-                </button>
-            </div>
-            <div class="group-label">Size</div>
-        </section>
-
-        <!-- Colors -->
-        <section class="ribbon-group colors-group">
-            <div class="color-selectors">
-                <div class="color-current">
-                    <div class="color-swatch foreground"></div>
-                    <span>Color 1</span>
-                </div>
-                <div class="color-current">
-                    <div class="color-swatch background"></div>
-                    <span>Color 2</span>
-                </div>
-            </div>
-
-            <div class="palette" id="color-palette">
-                <button style="--swatch:#000000" title="Black"></button>
-                <button style="--swatch:#7f7f7f" title="Gray"></button>
-                <button style="--swatch:#880015" title="Dark red"></button>
-                <button style="--swatch:#ed1c24" title="Red"></button>
-                <button style="--swatch:#ff7f27" title="Orange"></button>
-                <button style="--swatch:#fff200" title="Yellow"></button>
-                <button style="--swatch:#22b14c" title="Green"></button>
-                <button style="--swatch:#00a2e8" title="Cyan"></button>
-                <button style="--swatch:#3f48cc" title="Blue"></button>
-                <button style="--swatch:#a349a4" title="Purple"></button>
-                <button style="--swatch:#ffffff" title="White"></button>
-                <button style="--swatch:#c3c3c3" title="Silver"></button>
-                <button style="--swatch:#b97a57" title="Brown"></button>
-                <button style="--swatch:#ffaec9" title="Pink"></button>
-                <button style="--swatch:#ffc90e" title="Gold"></button>
-                <button style="--swatch:#efe4b0" title="Cream"></button>
-                <button style="--swatch:#b5e61d" title="Lime"></button>
-                <button style="--swatch:#99d9ea" title="Light cyan"></button>
-                <button style="--swatch:#7092be" title="Light blue"></button>
-                <button style="--swatch:#c8bfe7" title="Lavender"></button>
-            </div>
-
-            <button class="edit-colors-button">Edit colors</button>
-            <div class="group-label">Colors</div>
-        </section>
-
-    </div>
-</div>
-
+        </div>
 
         <section id="canvas-area">
             <canvas id="paint-canvas" width="800" height="500"></canvas>
