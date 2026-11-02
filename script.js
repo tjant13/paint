@@ -4,6 +4,8 @@ const ctx = canvas.getContext("2d");
 
 let color1 = "#000000";
 let isDrawing = false;
+let currentTool = "pencil";
+let brushSize = 2;
 
 // Start a new pencil stroke
 canvas.addEventListener("mousedown", (event) => {
@@ -30,7 +32,7 @@ canvas.addEventListener("mousemove", (event) => {
     if (!isDrawing) return;
 
     ctx.strokeStyle = color1;
-    ctx.lineWidth = 2;
+    ctx.lineWidth = brushSize;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
