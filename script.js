@@ -1,18 +1,25 @@
 
 const canvas = document.getElementById("paint-canvas");
-const ctx = canvas.getContext("2d", { willReadFrequently: true });
+const ctx = canvas.getContext("2d", {
+    willReadFrequently: true
+});
+
+// Crisp drawing settings
+ctx.imageSmoothingEnabled = false;
 
 // Drawing settings
 let color1 = "#000000";
 let isDrawing = false;
 let currentTool = "pencil";
 let brushSize = 2;
+let lastX = 0;
+let lastY = 0;
 
 // Initialize a white canvas
 ctx.fillStyle = "#ffffff";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Convert a hex color to RGB
+// Convert hex color to RGB
 function hexToRgb(hex) {
     const value = hex.replace("#", "");
 
@@ -63,47 +70,66 @@ palette.addEventListener("click", (event) => {
     document.querySelector(".foreground").style.backgroundColor = color1;
 });
 
-// Draw a dot
-function drawDot(x, y) {
+// Draw crisp square pixels along a line
+function drawPixelLine(x1, y1, x2, y2) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const steps = Math.max(
+        Math.abs(Math.round(dx)),
+        Math.abs(Math.round(dy)),
+        1
+    );
+
     ctx.fillStyle = currentTool === "eraser" ? "#ffffff" : color1;
-    ctx.beginPath();
-    ctx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
-    ctx.fill();
+
+    for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const x = Math.round(x1 + dx * t);
+        const y = Math.round(y1 + dy * t);
+
+        ctx.fillRect(
+            Math.floor(x - brushSize / 2),
+            Math.floor(y - brushSize / 2),
+            brushSize,
+            brushSize
+        );
+    }
 }
 
 // Start drawing or fill an area
 canvas.addEventListener("mousedown", (event) => {
+    const x = event.offsetX * canvas.width / canvas.clientWidth;
+    const y = event.offsetY * canvas.height / canvas.clientHeight;
+
     if (currentTool === "fill") {
-        floodFill(event.offsetX, event.offsetY);
+        floodFill(Math.floor(x), Math.floor(y));
         return;
     }
 
     isDrawing = true;
-    ctx.beginPath();
-    ctx.moveTo(event.offsetX, event.offsetY);
-    drawDot(event.offsetX, event.offsetY);
+    lastX = x;
+    lastY = y;
+
+    // Clicking without moving creates a crisp square dot
+    drawPixelLine(x, y, x, y);
 });
 
 // Continue drawing
 canvas.addEventListener("mousemove", (event) => {
     if (!isDrawing) return;
 
-    ctx.strokeStyle = currentTool === "eraser" ? "#ffffff" : color1;
-    ctx.lineWidth = brushSize;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
+    const x = event.offsetX * canvas.width / canvas.clientWidth;
+    const y = event.offsetY * canvas.height / canvas.clientHeight;
 
-    ctx.lineTo(event.offsetX, event.offsetY);
-    ctx.stroke();
+    drawPixelLine(lastX, lastY, x, y);
 
-    ctx.beginPath();
-    ctx.moveTo(event.offsetX, event.offsetY);
+    lastX = x;
+    lastY = y;
 });
 
 // Stop drawing
 function stopDrawing() {
     isDrawing = false;
-    ctx.beginPath();
 }
 
 canvas.addEventListener("mouseup", stopDrawing);
@@ -115,20 +141,13 @@ function floodFill(x, y) {
     const width = canvas.width;
     const height = canvas.height;
 
-    const startX = Math.floor(x);
-    const startY = Math.floor(y);
-
-    if (
-        startX < 0 || startX >= width ||
-        startY < 0 || startY >= height
-    ) {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
         return;
     }
 
     const image = ctx.getImageData(0, 0, width, height);
     const pixels = image.data;
-
-    const startIndex = (startY * width + startX) * 4;
+    const startIndex = (y * width + x) * 4;
 
     const target = {
         r: pixels[startIndex],
@@ -148,7 +167,8 @@ function floodFill(x, y) {
         return;
     }
 
-    const tolerance = 32;
+    // Only fill pixels matching the clicked color
+    const tolerance = 0;
 
     function matches(index) {
         return (
@@ -166,7 +186,7 @@ function floodFill(x, y) {
     let head = 0;
     let tail = 0;
 
-    const startPixel = startY * width + startX;
+    const startPixel = y * width + x;
     queue[tail++] = startPixel;
     visited[startPixel] = 1;
 
