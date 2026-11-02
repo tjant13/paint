@@ -5,22 +5,40 @@ const ctx = canvas.getContext("2d");
 let color1 = "#000000";
 let isDrawing = false;
 
-// Start drawing when the mouse button is pressed
-canvas.addEventListener("mousedown", () => {
+// Start a new pencil stroke
+canvas.addEventListener("mousedown", (event) => {
     isDrawing = true;
+
+    ctx.beginPath();
+    ctx.moveTo(event.offsetX, event.offsetY);
 });
 
 // Stop drawing when the mouse button is released
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
+    ctx.beginPath();
 });
 
-// Draw while moving the mouse
+// Stop drawing if the mouse leaves the canvas
+canvas.addEventListener("mouseleave", () => {
+    isDrawing = false;
+    ctx.beginPath();
+});
+
+// Draw a continuous line while moving the mouse
 canvas.addEventListener("mousemove", (event) => {
     if (!isDrawing) return;
 
-    ctx.fillStyle = color1;
-    ctx.fillRect(event.offsetX, event.offsetY, 2, 2);
+    ctx.strokeStyle = color1;
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(event.offsetX, event.offsetY);
 });
 
 // Find the color palette
