@@ -7,22 +7,38 @@
     <title>Marhcski Paint</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
     <header id="title-bar">
         <div id="quick-access">
-            <!-- Quick Access Toolbar goes here -->
+            <button title="Save" aria-label="Save">💾</button>
+            <button title="Undo" aria-label="Undo">↶</button>
+            <button title="Redo" aria-label="Redo">↷</button>
         </div>
+
         <h1>Marhcski Paint</h1>
+
+        <div class="window-controls">
+            <button aria-label="Minimize">−</button>
+            <button aria-label="Maximize">□</button>
+            <button class="close-button" aria-label="Close">×</button>
+        </div>
     </header>
 
     <nav id="paint-menu">
-        <!-- Paint menu and ribbon tabs go here -->
+        <button id="paint-menu-button">Paint ▼</button>
+
+        <div id="ribbon-tabs">
+            <button class="ribbon-tab active" data-tab="home">Home</button>
+            <button class="ribbon-tab" data-tab="view">View</button>
+        </div>
     </nav>
 
     <main id="workspace">
         <div id="ribbon">
-            <!-- Drawing tools and color palette go here -->
+            <div class="ribbon-placeholder">
+                The Home ribbon will go here.
+            </div>
         </div>
 
         <section id="canvas-area">
