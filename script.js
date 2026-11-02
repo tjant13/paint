@@ -8,11 +8,11 @@ let isDrawing = false;
 let currentTool = "pencil";
 let brushSize = 2;
 
-// Start with a white canvas
+// Initialize a white canvas
 ctx.fillStyle = "#ffffff";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// Convert a hex color into RGB values
+// Convert a hex color to RGB
 function hexToRgb(hex) {
     const value = hex.replace("#", "");
 
@@ -23,7 +23,7 @@ function hexToRgb(hex) {
     };
 }
 
-// Select a tool
+// Tool buttons
 const pencilButton = document.getElementById("pencil-button");
 const eraserButton = document.getElementById("eraser-button");
 const fillButton = document.getElementById("fill-button");
@@ -49,6 +49,28 @@ sizeSlider.addEventListener("input", () => {
     sizeLabel.textContent = `${brushSize} px`;
 });
 
+// Color palette
+const palette = document.getElementById("color-palette");
+
+palette.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+
+    color1 = getComputedStyle(button)
+        .getPropertyValue("--swatch")
+        .trim();
+
+    document.querySelector(".foreground").style.backgroundColor = color1;
+});
+
+// Draw a dot
+function drawDot(x, y) {
+    ctx.fillStyle = currentTool === "eraser" ? "#ffffff" : color1;
+    ctx.beginPath();
+    ctx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
+    ctx.fill();
+}
+
 // Start drawing or fill an area
 canvas.addEventListener("mousedown", (event) => {
     if (currentTool === "fill") {
@@ -57,21 +79,10 @@ canvas.addEventListener("mousedown", (event) => {
     }
 
     isDrawing = true;
-
     ctx.beginPath();
     ctx.moveTo(event.offsetX, event.offsetY);
-
-    // Make a dot if the user just clicks
     drawDot(event.offsetX, event.offsetY);
 });
-
-// Draw one dot
-function drawDot(x, y) {
-    ctx.fillStyle = currentTool === "eraser" ? "#ffffff" : color1;
-    ctx.beginPath();
-    ctx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
-    ctx.fill();
-}
 
 // Continue drawing
 canvas.addEventListener("mousemove", (event) => {
@@ -98,20 +109,6 @@ function stopDrawing() {
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mouseleave", stopDrawing);
 document.addEventListener("mouseup", stopDrawing);
-
-// Color palette
-const palette = document.getElementById("color-palette");
-
-palette.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (!button) return;
-
-    color1 = getComputedStyle(button)
-        .getPropertyValue("--swatch")
-        .trim();
-
-    document.querySelector(".foreground").style.backgroundColor = color1;
-});
 
 // Flood-fill tool
 function floodFill(x, y) {
@@ -142,7 +139,6 @@ function floodFill(x, y) {
 
     const replacement = hexToRgb(color1);
 
-    // Don't fill if the color is already the same
     if (
         target.r === replacement.r &&
         target.g === replacement.g &&
@@ -152,7 +148,6 @@ function floodFill(x, y) {
         return;
     }
 
-    // Allow small color differences around antialiased edges
     const tolerance = 32;
 
     function matches(index) {
@@ -188,7 +183,6 @@ function floodFill(x, y) {
         pixels[index + 2] = replacement.b;
         pixels[index + 3] = 255;
 
-        // Check the four neighboring pixels
         const neighbors = [
             px > 0 ? pixel - 1 : -1,
             px < width - 1 ? pixel + 1 : -1,
