@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!-- Title bar -->
     <header id="title-bar">
         <div id="quick-access">
             <button title="Save" aria-label="Save">💾</button>
@@ -25,6 +26,7 @@
         </div>
     </header>
 
+    <!-- Paint menu and ribbon tabs -->
     <nav id="paint-menu">
         <button id="paint-menu-button">Paint ▼</button>
 
@@ -35,6 +37,8 @@
     </nav>
 
     <main id="workspace">
+
+        <!-- Ribbon toolbar -->
         <div id="ribbon">
             <div id="home-ribbon" class="ribbon-content">
 
@@ -45,6 +49,7 @@
                             <span class="tool-icon">📋</span>
                             <span>Paste</span>
                         </button>
+
                         <div class="small-tools">
                             <button title="Cut">✂ Cut</button>
                             <button title="Copy">▣ Copy</button>
@@ -67,12 +72,41 @@
                 <!-- Tools -->
                 <section class="ribbon-group">
                     <div class="group-tools">
-                        <button class="tool-button" title="Pencil">✎<span>Pencil</span></button>
-                        <button class="tool-button" title="Fill with color">▰<span>Fill</span></button>
-                        <button class="tool-button" title="Text">A<span>Text</span></button>
-                        <button class="tool-button" title="Eraser">▱<span>Eraser</span></button>
-                        <button class="tool-button" title="Color picker">◉<span>Picker</span></button>
-                        <button class="tool-button" title="Magnifier">⌕<span>Magnifier</span></button>
+                        <button
+                            class="tool-button"
+                            id="pencil-button"
+                            title="Pencil"
+                        >
+                            ✎<span>Pencil</span>
+                        </button>
+
+                        <button
+                            class="tool-button"
+                            id="fill-button"
+                            title="Fill with color"
+                        >
+                            ▰<span>Fill</span>
+                        </button>
+
+                        <button class="tool-button" title="Text">
+                            A<span>Text</span>
+                        </button>
+
+                        <button
+                            class="tool-button"
+                            id="eraser-button"
+                            title="Eraser"
+                        >
+                            ▱<span>Eraser</span>
+                        </button>
+
+                        <button class="tool-button" title="Color picker">
+                            ◉<span>Picker</span>
+                        </button>
+
+                        <button class="tool-button" title="Magnifier">
+                            ⌕<span>Magnifier</span>
+                        </button>
                     </div>
                     <div class="group-label">Tools</div>
                 </section>
@@ -80,7 +114,10 @@
                 <!-- Brushes -->
                 <section class="ribbon-group">
                     <div class="group-tools">
-                        <button class="tool-button large" title="Brushes">
+                        <button
+                            class="tool-button large"
+                            title="Brushes"
+                        >
                             <span class="tool-icon">🖌</span>
                             <span>Brushes ▾</span>
                         </button>
@@ -107,21 +144,23 @@
                     <div class="group-label">Shapes</div>
                 </section>
 
-                <!-- Size -->
+                <!-- Brush size slider -->
                 <section class="ribbon-group">
                     <div class="group-tools">
-                        <button class="tool-button large" id="size-button" title="Line size">
-                            <span class="tool-icon">☰</span>
-                            <span>Size: <span id="size-label">2 px</span> ▾</span>
-                        </button>
+                        <label for="brush-size-slider">
+                            Brush size:
+                            <span id="size-label">2 px</span>
+                        </label>
 
-                        <div id="size-menu" class="size-menu">
-                            <button data-size="1">1 px — Thin</button>
-                            <button data-size="2">2 px — Normal</button>
-                            <button data-size="4">4 px — Medium</button>
-                            <button data-size="6">6 px — Thick</button>
-                            <button data-size="8">8 px — Very thick</button>
-                        </div>
+                        <input
+                            type="range"
+                            id="brush-size-slider"
+                            min="1"
+                            max="100"
+                            value="2"
+                            step="1"
+                            title="Adjust brush size"
+                        />
                     </div>
                     <div class="group-label">Size</div>
                 </section>
@@ -133,6 +172,7 @@
                             <div class="color-swatch foreground"></div>
                             <span>Color 1</span>
                         </div>
+
                         <div class="color-current">
                             <div class="color-swatch background"></div>
                             <span>Color 2</span>
@@ -150,6 +190,7 @@
                         <button style="--swatch:#00a2e8" title="Cyan"></button>
                         <button style="--swatch:#3f48cc" title="Blue"></button>
                         <button style="--swatch:#a349a4" title="Purple"></button>
+
                         <button style="--swatch:#ffffff" title="White"></button>
                         <button style="--swatch:#c3c3c3" title="Silver"></button>
                         <button style="--swatch:#b97a57" title="Brown"></button>
@@ -163,22 +204,32 @@
                     </div>
 
                     <button class="edit-colors-button">Edit colors</button>
+
                     <div class="group-label">Colors</div>
                 </section>
 
             </div>
         </div>
 
+        <!-- Drawing canvas -->
         <section id="canvas-area">
-            <canvas id="paint-canvas" width="800" height="500"></canvas>
+            <canvas
+                id="paint-canvas"
+                width="800"
+                height="500"
+            ></canvas>
         </section>
+
     </main>
 
+    <!-- Status bar -->
     <footer id="status-bar">
         <span id="canvas-size">800 × 500 px</span>
         <span id="zoom-level">100%</span>
     </footer>
 
+    <!-- JavaScript -->
     <script src="script.js"></script>
+
 </body>
 </html>
