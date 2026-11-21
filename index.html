@@ -7,120 +7,178 @@
     <title>Marhcski Paint</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="title-bar">
-        <div class="quick-access">
+    <!-- Title bar -->
+    <header id="title-bar">
+        <div id="quick-access">
             <button id="save-button" title="Copy canvas to clipboard">Save</button>
             <button id="undo-button" title="Undo">Undo</button>
             <button id="redo-button" title="Redo">Redo</button>
         </div>
-        <span>Marhcski Paint</span>
-    </div>
 
-    <div id="paint-menu">
+        <h1>Marhcski Paint</h1>
+    </header>
+
+    <!-- Paint menu -->
+    <nav id="paint-menu">
         <button>Paint ▼</button>
         <button>Home</button>
         <button>View</button>
-    </div>
+    </nav>
 
+    <!-- Ribbon -->
     <div id="ribbon">
-        <div id="home-ribbon">
+        <div class="ribbon-content">
 
+            <!-- Clipboard -->
             <div class="ribbon-group">
-                <div class="group-content">
-                    <button>Paste</button>
-                    <button>Cut</button>
-                    <button>Copy</button>
+                <div class="group-tools">
+                    <div class="small-tools">
+                        <button>Paste</button>
+                        <button>Cut</button>
+                        <button>Copy</button>
+                    </div>
                 </div>
                 <div class="group-label">Clipboard</div>
             </div>
 
+            <!-- Image -->
             <div class="ribbon-group">
-                <div class="group-content">
-                    <button>Select</button>
-                    <button>Crop</button>
-                    <button>Resize</button>
-                    <button>Rotate</button>
+                <div class="group-tools">
+                    <div class="image-tools">
+                        <button>Select</button>
+                        <button>Crop</button>
+                        <button>Resize</button>
+                        <button>Rotate</button>
+                    </div>
                 </div>
                 <div class="group-label">Image</div>
             </div>
 
+            <!-- Tools -->
             <div class="ribbon-group">
-                <div class="group-content">
-                    <button id="pencil-button">Pencil</button>
-                    <button id="fill-button">Fill</button>
-                    <button>Text</button>
-                    <button id="eraser-button">Eraser</button>
-                    <button id="picker-button">Picker</button>
-                    <button>Magnifier</button>
+                <div class="group-tools">
+                    <div class="small-tools">
+                        <button id="pencil-button">Pencil</button>
+                        <button id="fill-button">Fill</button>
+                        <button>Text</button>
+                        <button id="eraser-button">Eraser</button>
+                        <button id="picker-button">Eyedropper</button>
+                        <button>Magnifier</button>
+                    </div>
                 </div>
                 <div class="group-label">Tools</div>
             </div>
 
+            <!-- Brushes -->
             <div class="ribbon-group">
-                <div class="group-content">
-                    <button>Brushes</button>
+                <div class="group-tools">
+                    <button class="tool-button large">Brushes</button>
                 </div>
                 <div class="group-label">Brushes</div>
             </div>
 
-            <div class="ribbon-group">
-                <div class="group-content">
-                    <button>Shapes</button>
+            <!-- Shapes -->
+            <div class="ribbon-group shapes-group">
+                <div class="group-tools">
+                    <div class="shape-grid">
+                        <button>□</button>
+                        <button>○</button>
+                        <button>△</button>
+                        <button>◇</button>
+                        <button>↗</button>
+                        <button>⌒</button>
+                        <button>▱</button>
+                        <button>⬡</button>
+                        <button>☆</button>
+                        <button>♡</button>
+                        <button>→</button>
+                        <button>✦</button>
+                    </div>
                 </div>
                 <div class="group-label">Shapes</div>
             </div>
 
+            <!-- Brush size -->
             <div class="ribbon-group">
-                <div class="group-content">
-                    <label for="brush-size-slider">
-                        Brush size: <span id="size-label">2 px</span>
-                    </label>
-                    <input
-                        type="range"
-                        id="brush-size-slider"
-                        min="1"
-                        max="100"
-                        value="2"
-                        step="1"
-                    >
+                <div class="group-tools">
+                    <div>
+                        <label for="brush-size-slider">
+                            Brush size: <span id="size-label">2 px</span>
+                        </label>
+
+                        <input
+                            type="range"
+                            id="brush-size-slider"
+                            min="1"
+                            max="100"
+                            value="2"
+                        >
+                    </div>
                 </div>
                 <div class="group-label">Size</div>
             </div>
 
-            <div class="ribbon-group">
-                <div class="group-content">
-                    <div class="color-boxes">
-                        <div class="foreground"></div>
-                        <div class="background"></div>
+            <!-- Colors -->
+            <div class="ribbon-group colors-group">
+                <div class="group-tools">
+
+                    <div>
+                        <div class="color-selectors">
+
+                            <div class="color-current">
+                                <div class="color-swatch foreground"></div>
+                                <span>Color 1</span>
+                            </div>
+
+                            <div class="color-current">
+                                <div class="color-swatch background"></div>
+                                <span>Color 2</span>
+                            </div>
+
+                        </div>
+
+                        <div class="palette" id="color-palette">
+                            <button class="swatch" style="--swatch:#000000"></button>
+                            <button class="swatch" style="--swatch:#ffffff"></button>
+                            <button class="swatch" style="--swatch:#7f7f7f"></button>
+                            <button class="swatch" style="--swatch:#c3c3c3"></button>
+                            <button class="swatch" style="--swatch:#880015"></button>
+                            <button class="swatch" style="--swatch:#ed1c24"></button>
+                            <button class="swatch" style="--swatch:#ff7f27"></button>
+                            <button class="swatch" style="--swatch:#fff200"></button>
+                            <button class="swatch" style="--swatch:#22b14c"></button>
+                            <button class="swatch" style="--swatch:#00a2e8"></button>
+
+                            <button class="swatch" style="--swatch:#3f48cc"></button>
+                            <button class="swatch" style="--swatch:#a349a4"></button>
+                            <button class="swatch" style="--swatch:#b97a57"></button>
+                            <button class="swatch" style="--swatch:#ffaec9"></button>
+                            <button class="swatch" style="--swatch:#ffc90e"></button>
+                            <button class="swatch" style="--swatch:#efe4b0"></button>
+                            <button class="swatch" style="--swatch:#b5e61d"></button>
+                            <button class="swatch" style="--swatch:#99d9ea"></button>
+                            <button class="swatch" style="--swatch:#7092be"></button>
+                            <button class="swatch" style="--swatch:#c8bfe7"></button>
+                        </div>
+
+                        <button
+                            id="edit-colors-button"
+                            class="edit-colors-button"
+                        >
+                            Edit colors
+                        </button>
+
+                        <input
+                            type="color"
+                            id="color-picker-input"
+                            value="#000000"
+                            hidden
+                        >
                     </div>
 
-                    <div id="color-palette">
-                        <button class="swatch" style="--swatch: #000000"></button>
-                        <button class="swatch" style="--swatch: #ffffff"></button>
-                        <button class="swatch" style="--swatch: #7f7f7f"></button>
-                        <button class="swatch" style="--swatch: #c3c3c3"></button>
-                        <button class="swatch" style="--swatch: #880015"></button>
-                        <button class="swatch" style="--swatch: #ed1c24"></button>
-                        <button class="swatch" style="--swatch: #ff7f27"></button>
-                        <button class="swatch" style="--swatch: #fff200"></button>
-                        <button class="swatch" style="--swatch: #22b14c"></button>
-                        <button class="swatch" style="--swatch: #00a2e8"></button>
-                        <button class="swatch" style="--swatch: #3f48cc"></button>
-                        <button class="swatch" style="--swatch: #a349a4"></button>
-                        <button class="swatch" style="--swatch: #b97a57"></button>
-                        <button class="swatch" style="--swatch: #ffaec9"></button>
-                        <button class="swatch" style="--swatch: #ffc90e"></button>
-                        <button class="swatch" style="--swatch: #efe4b0"></button>
-                        <button class="swatch" style="--swatch: #b5e61d"></button>
-                        <button class="swatch" style="--swatch: #99d9ea"></button>
-                        <button class="swatch" style="--swatch: #7092be"></button>
-                        <button class="swatch" style="--swatch: #c8bfe7"></button>
-                    </div>
-
-                    <button id="edit-colors-button">Edit colors</button>
-                    <input type="color" id="color-picker-input" value="#000000" hidden>
                 </div>
                 <div class="group-label">Colors</div>
             </div>
@@ -128,15 +186,26 @@
         </div>
     </div>
 
-    <div class="canvas-area">
-        <canvas id="paint-canvas" width="800" height="500"></canvas>
-    </div>
+    <!-- Main workspace -->
+    <main id="workspace">
 
-    <div class="status-bar">
-        <span>800 × 500 px</span>
-        <span>100%</span>
-    </div>
+        <div id="canvas-area">
+            <canvas
+                id="paint-canvas"
+                width="800"
+                height="500"
+            ></canvas>
+        </div>
+
+        <!-- Status bar -->
+        <footer id="status-bar">
+            <span id="canvas-size">800 × 500 px</span>
+            <span id="zoom-level">100%</span>
+        </footer>
+
+    </main>
 
     <script src="script.js"></script>
+
 </body>
 </html>
